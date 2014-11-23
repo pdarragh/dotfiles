@@ -3,49 +3,49 @@
 ################################################################################
 
 ## Special
-RS="\[\033[0m\]"		# reset
-HC="\[\033[1m\]"		# hicolor (bold)
-DIM="\[\033[2m\]"		# dim
-UL="\[\033[4m\]"		# underline
-BL="\[\033[5m\]"		# blink
-INV="\[\033[7m\]"		# invert background and foreground
-HID="\[\033[8m\]"		# hidden
+RS="\[\033[0m\]"                # reset
+HC="\[\033[1m\]"                # hicolor (bold)
+DIM="\[\033[2m\]"               # dim
+UL="\[\033[4m\]"                # underline
+BL="\[\033[5m\]"                # blink
+INV="\[\033[7m\]"               # invert background and foreground
+HID="\[\033[8m\]"               # hidden
 ## Foreground
-FBLK="\[\033[30m\]"		# foreground black
-FRED="\[\033[31m\]"		# foreground red
-FGRN="\[\033[32m\]"		# foreground green
-FYEL="\[\033[33m\]"		# foreground yellow
-FBLU="\[\033[34m\]"		# foreground blue
-FMAG="\[\033[35m\]"		# foreground magenta
-FCYN="\[\033[36m\]"		# foreground cyan
-FWHT="\[\033[37m\]"		# foreground white
+FBLK="\[\033[30m\]"             # foreground black
+FRED="\[\033[31m\]"             # foreground red
+FGRN="\[\033[32m\]"             # foreground green
+FYEL="\[\033[33m\]"             # foreground yellow
+FBLU="\[\033[34m\]"             # foreground blue
+FMAG="\[\033[35m\]"             # foreground magenta
+FCYN="\[\033[36m\]"             # foreground cyan
+FWHT="\[\033[37m\]"             # foreground white
 ## Foreground Bright
-FBBLK="\[\033[90m\]"		# foreground bold black
-FBRED="\[\033[91m\]"		# foreground bold red
-FBGRN="\[\033[92m\]"		# foreground bold green
-FBYEL="\[\033[93m\]"		# foreground bold yellow
-FBBLU="\[\033[94m\]"		# foreground bold blue
-FBMAG="\[\033[95m\]"		# foreground bold magenta
-FBCYN="\[\033[96m\]"		# foreground bold cyan
-FBWHT="\[\033[97m\]"		# foreground bold white
+FBBLK="\[\033[90m\]"            # foreground bold black
+FBRED="\[\033[91m\]"            # foreground bold red
+FBGRN="\[\033[92m\]"            # foreground bold green
+FBYEL="\[\033[93m\]"            # foreground bold yellow
+FBBLU="\[\033[94m\]"            # foreground bold blue
+FBMAG="\[\033[95m\]"            # foreground bold magenta
+FBCYN="\[\033[96m\]"            # foreground bold cyan
+FBWHT="\[\033[97m\]"            # foreground bold white
 ## Background
-BBLK="\[\033[40m\]"		# background black
-BRED="\[\033[41m\]"		# background red
-BGRN="\[\033[42m\]"		# background green
-BYEL="\[\033[43m\]"		# background yellow
-BBLU="\[\033[44m\]"		# background blue
-BMAG="\[\033[45m\]"		# background magenta
-BCYN="\[\033[46m\]"		# background cyan
-BWHT="\[\033[47m\]"		# background white
+BBLK="\[\033[40m\]"             # background black
+BRED="\[\033[41m\]"             # background red
+BGRN="\[\033[42m\]"             # background green
+BYEL="\[\033[43m\]"             # background yellow
+BBLU="\[\033[44m\]"             # background blue
+BMAG="\[\033[45m\]"             # background magenta
+BCYN="\[\033[46m\]"             # background cyan
+BWHT="\[\033[47m\]"             # background white
 ## Background Bright
-BBBLK="\[\033[100m\]"		# background bold black
-BBRED="\[\033[101m\]"		# background bold red
-BBGRN="\[\033[102m\]"		# background bold green
-BBYEL="\[\033[103m\]"		# background bold yellow
-BBBLU="\[\033[104m\]"		# background bold blue
-BBMAG="\[\033[105m\]"		# background bold magenta
-BBCYN="\[\033[106m\]"		# background bold cyan
-BBWHT="\[\033[107m\]"		# background bold white
+BBBLK="\[\033[100m\]"           # background bold black
+BBRED="\[\033[101m\]"           # background bold red
+BBGRN="\[\033[102m\]"           # background bold green
+BBYEL="\[\033[103m\]"           # background bold yellow
+BBBLU="\[\033[104m\]"           # background bold blue
+BBMAG="\[\033[105m\]"           # background bold magenta
+BBCYN="\[\033[106m\]"           # background bold cyan
+BBWHT="\[\033[107m\]"           # background bold white
 
 ################################################################################
 ### Prompt Customization
@@ -81,14 +81,17 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 #       [ pdarragh | mycomputer | h283 | r0 ]$
 prompt_command () {
 	ret=$?
+    def=${FBBLK}
 	if [[ $ret -eq 0 ]]; then
-		# Color things green
-		prev="${FGRN}${HC}r0${RS}"
+		# Color return value green
+		prev="${FBGRN}${HC}r0${def}"
 	else
-		# Color things red
-		prev="${FBRED}r${ret}${RS}"
+		# Color return value red
+		prev="${FBRED}r${ret}${def}"
 	fi
-	export PS1="${RS}[ ${FCYN}\t${RS} | $( pwd ) ]\n[ ${FCYN}\u${RS} | \h | h\! | ${prev} ]\$ "
+    export PS1="${RS}"
+	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd )${def} ${FWHT}]\n"
+    export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${def}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
 }
 
 # The following creates:
@@ -135,6 +138,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+################################################################################
+### SSH Tab Completion
+################################################################################
+
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 ################################################################################
 ### Miscellaneous
