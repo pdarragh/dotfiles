@@ -81,7 +81,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 #       [ pdarragh | mycomputer | h283 | r0 ]$
 prompt_command () {
 	ret=$?
-    def=${FBBLK}
+	def=${FBBLK}
 	if [[ $ret -eq 0 ]]; then
 		# Color return value green
 		prev="${FBGRN}${HC}r0${def}"
@@ -89,9 +89,9 @@ prompt_command () {
 		# Color return value red
 		prev="${FBRED}r${ret}${def}"
 	fi
-    export PS1="${RS}"
+	export PS1="${RS}"
 	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd )${def} ${FWHT}]\n"
-    export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${def}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
+	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${def}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
 }
 
 # The following creates:
