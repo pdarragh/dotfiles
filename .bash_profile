@@ -166,6 +166,9 @@ shopt -s histappend;
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
+# Modify $PATH
+export PATH='/usr/local/sbin:$PATH'
+
 ################################################################################
 ### Functions
 ################################################################################
