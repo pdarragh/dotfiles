@@ -194,3 +194,14 @@ bid() {
 	# return the result or an error message
 	[[ -z $bundleid || $bundleid = "" ]] && echo "Error getting bundle ID for \"$@\"" || echo "$location: $bundleid"
 }
+
+################################################################################
+### Extras Inclusion
+################################################################################
+
+# These are sourced from a separate file (~/.bash_extras).
+# This is useful if you want per-machine changes to be made. Since this is at
+# the bottom of .bash_profile, these will be the last changes to be effected.
+if [ -f ~/.bash_extras ]; then
+    . ~/.bash_extras
+fi
