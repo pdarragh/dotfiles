@@ -5,8 +5,6 @@
 ## Thanks to mitsuhiko on GitHub for the idea.
 ##
 
-## TEST
-
 USRHOME   := $${HOME}
 BACKUPDIR := $(USRHOME)/.old_dotfiles
 
@@ -35,5 +33,5 @@ install-vim:
 
 save:
 	git add --all .
-	git commit -m "Automatic Update: $(date)"
+	git commit -m "Automatic Update: $$(date)"
 	git push -u origin master
