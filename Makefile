@@ -5,6 +5,8 @@
 ## Thanks to mitsuhiko on GitHub for the idea.
 ##
 
+## TEST
+
 USRHOME   := $${HOME}
 BACKUPDIR := $(USRHOME)/.old_dotfiles
 
