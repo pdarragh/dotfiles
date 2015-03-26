@@ -10,7 +10,7 @@ BACKUPDIR := $(USRHOME)/.old_dotfiles
 
 .PHONY: default update install
 
-default: update install
+default: update install save
 
 update:
 	@echo "Updating to latest version..."
@@ -30,3 +30,8 @@ install-vim:
 	-$(RM) $(USRHOME)/.vim $(USRHOME)/.vimrc
 	ln -sf `pwd`/vim $(USRHOME)/.vim
 	ln -sf $(USRHOME)/vimrc $(USRHOME)/.vimrc
+
+save:
+	git add --all .
+	git commit -m "Automatic Update: $(date)"
+	git push -u origin master
