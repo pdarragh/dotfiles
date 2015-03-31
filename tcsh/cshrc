@@ -1,0 +1,93 @@
+# Based on one from Todd McDaniel
+
+#  Setup Environment
+set notify
+set complete = enhance
+set autolist
+set noclobber
+set history = 250
+set ignoreeof
+
+
+#panther tests
+#setenv CLICOLOR 1
+# use yellow for directories
+#setenv LSCOLORS dxfxcxdxbxegedabagacad
+
+
+#source /sw/bin/init.csh
+
+#set path = ($PATH /usr/local/bin /usr/local/sbin)
+#setenv PATH /usr/local/bin:/usr/local/sbin:/opt/local/bin:${PATH}:/Developer/Tools:/usr/X11R6/bin:/usr/bin/X11:/usr/local/bin/X11
+#set path=($path /opt/local/bin)
+
+
+set path=(/usr/local/bin /usr/local/sbin /opt/local/bin $path)
+setenv MANPATH "/usr/share/man:/usr/local/man"
+
+# known good
+#setenv PATH ${PATH}:/usr/local/bin:/usr/local/sbin
+
+setenv PAGER        /usr/bin/more
+#setenv DISPLAY         :0
+#setenv TELALERTHOST    telalert-server.engin.umich.edu
+
+#   Other prompts
+#alias setprompt 'set prompt=("%n@%m:%/ {%!} ")'
+#alias setprompt 'set prompt="\n[%c1]%{^[[0m%}%b %{^[[32m%}%@ %n@%m>%{^[[0m%} "'
+#alias setprompt  'set prompt="%S%~%s%{^[[0m%}%b %{^[[32m%}%@ %n@%m >%{^[[0m%}"'
+
+#   My old prompt
+# alias setprompt 'set prompt=" %S%m%s %S%~%s #\! >"'
+
+#   Original prompt
+# alias setprompt 'set prompt=" [${cwd}] #\! >"'
+
+#alias setprompt      'set prompt = "%m %/% "'
+alias setprompt   'set prompt=" %S%~%s %@ %n@%m #\! >"'
+setprompt
+
+
+# My Commands
+#alias ssh 'ssh -X'
+
+#   Directory Alias'
+alias cd                'chdir \!* && setprompt'
+alias ls                'ls -G'
+alias all               'ls -aRl1G'
+alias dir               'ls -alFG'
+alias dirn              'ls -alFnG'
+alias ldir              'dir | grep "^d"'
+alias ldr               'ls -aFsG'
+alias LS                'ls -laG'
+alias full                'ls -alF@ehiOpT'
+
+#       Privlege Alias'
+alias read              'chmod u-w \!*'
+alias private   'chmod og-rwx \!*'
+alias pubdir    'chmod og+rx \!*'
+alias pubexec   'chmod og+rx \!*'
+alias public    'chmod og+r \!*'
+alias C                 'cc -o \!^ \!^.c'
+
+#       Misc Commands
+alias bye               'logout'
+alias cls               'clear'
+alias f                 'finger'
+alias h                 'history'
+alias help              'apropos'
+alias home              'cd'
+alias md                'mkdir'
+alias pwd               'echo $cwd'
+alias rd                'rmdir'
+alias rm                'rm -i'
+alias seetar    'zcat \!^ | tar tvf -'
+alias vt100             'set term = vt100'
+alias ssh                'ssh -p 22022'
+
+alias cget    'curl -vO'
+#alias vi     '/usr/local/bin/vi'
+
+# Setting PATH for Python 2.7
+# The orginal version is saved in .cshrc.pysave
+set path=(/Library/Frameworks/Python.framework/Versions/2.7/bin $path)

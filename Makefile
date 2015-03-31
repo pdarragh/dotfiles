@@ -42,6 +42,12 @@ install-vim:
 	-@ln -sf $(current_dir)/vim $(userhome)/.vim
 	-@ln -sf $(userhome)/.vim/vimrc $(userhome)/.vimrc
 
+.PHONY: install-tcsh
+install-tcsh:
+	@echo "Installing prefs: tcsh"
+	-@(RM) $(userhome)/.cshrc
+	-@ln -sf $(current_dir)/tcsh/cshrc $(userhome)/.cshrc
+
 save:
 	-@git add --all .
 	-@git commit -m "Automatic Update: $$(date)"
