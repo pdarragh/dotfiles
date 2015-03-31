@@ -5,7 +5,9 @@
 ## Thanks to mitsuhiko on GitHub for the idea.
 ##
 
-USERHOME := $${HOME}
+userhome := $${HOME}
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(dir $(mkfile_path))
 
 .PHONY: default update install
 
@@ -17,25 +19,28 @@ update:
 	@echo "Updated. You should now do 'make install' to put everything in place."
 
 install: install-bash install-vim
+	@echo "Creating symlink to the dotfiles directory: $(current_dir)."
+	-@$(RM) $(userhome)/.dotfiles
+	-@ln -sf $(current_dir) $(userhome)/.dotfiles
 
 .PHONY: install-bash
 install-bash:
 	@echo "Installing prefs: bash"
-	-@$(RM) $(USERHOME)/.bashrc
-	-@$(RM) $(USERHOME)/.bash_profile
-	-@$(RM) $(USERHOME)/.bash_aliases
-	-@$(RM) $(USERHOME)/.inputrc
-	-@ln -sf `pwd`/bash/bashrc $(USERHOME)/.bashrc
-	-@ln -sf `pwd`/bash/bash_profile $(USERHOME)/.bash_profile
-	-@ln -sf `pwd`/bash/bash_aliases $(USERHOME)/.bash_aliases
-	-@ln -sf `pwd`/bash/inputrc $(USERHOME)/.inputrc
+	-@$(RM) $(userhome)/.bashrc
+	-@$(RM) $(userhome)/.bash_profile
+	-@$(RM) $(userhome)/.bash_aliases
+	-@$(RM) $(userhome)/.inputrc
+	-@ln -sf $(current_dir)/bash/bashrc $(userhome)/.bashrc
+	-@ln -sf $(current_dir)/bash/bash_profile $(userhome)/.bash_profile
+	-@ln -sf $(current_dir)/bash/bash_aliases $(userhome)/.bash_aliases
+	-@ln -sf $(current_dir)/bash/inputrc $(userhome)/.inputrc
 
 .PHONY: install-vim
 install-vim:
 	@echo "Installing prefs: vim"
-	-@$(RM) $(USERHOME)/.vim $(USERHOME)/.vimrc
-	-@ln -sf `pwd`/vim $(USERHOME)/.vim
-	-@ln -sf $(USERHOME)/vimrc $(USERHOME)/.vimrc
+	-@$(RM) $(userhome)/.vim $(userhome)/.vimrc
+	-@ln -sf $(current_dir)/vim $(userhome)/.vim
+	-@ln -sf $(userhome)/.vim/vimrc $(userhome)/.vimrc
 
 save:
 	-@git add --all .
