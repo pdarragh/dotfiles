@@ -45,5 +45,5 @@ install-vim:
 save:
 	-@git add --all .
 	-@git commit -m "Automatic Update: $$(date)"
-	-@git push -u origin master
+	-@git push
 	@echo "Changes committed and pushed."
