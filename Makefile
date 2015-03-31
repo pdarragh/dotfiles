@@ -14,7 +14,7 @@ default: update install
 update:
 	@echo "Updating to latest version..."
 	-@git pull
-	@echo "Updated. You should now `make install` to put everything in place."
+	@echo "Updated. You should now do 'make install' to put everything in place."
 
 install: install-bash install-vim
 
