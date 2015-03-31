@@ -1,6 +1,14 @@
 ################################################################################
-### ANSI Color Codes
+## Bash Customizations
+##
+## All my favorite settings and customizations in one handy .bashrc file.
+##
 ################################################################################
+
+################################################################################
+# ANSI Color Codes
+#
+# Use these for any color settings in the prompts.
 
 ## Special
 RS="\[\033[0m\]"                # reset
@@ -48,30 +56,9 @@ BBCYN="\[\033[106m\]"           # background bold cyan
 BBWHT="\[\033[107m\]"           # background bold white
 
 ################################################################################
-### Prompt Customization
-################################################################################
+# Prompt Customization
 
-## PS1
-
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
-fi
-
-# Intense PS1 customization
-
-unset color_prompt force_color_prompt
-
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+# PS1
 
 # The following creates:
 #       [ HH:MM:SS | $(pwd) ]
@@ -94,29 +81,10 @@ prompt_command () {
 	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${def}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
 }
 
-# The following creates:
-#       [ At: $(pwd) ]
-#       [ username@hostname HH:MM:SS $? ]\$
-# Which could appear as:
-#       [ At: /Users/pdarragh ]
-#       [ pdarragh@mycomputer 16:23:42 0 ]$
-#
-# prompt_command () {
-#         prev=$?
-#         if [[ $prev -eq 0 ]]; then
-#                 END="${FGRN}${HC}0${RS} ]${HC}\\\$ ${RS}"
-#         else
-#                 END="${FBRED}${prev}${RS} ]${HC}\\\$ ${RS}"
-#         fi
-#         CURDIR="$(pwd)"
-#         export PS1="${RS}[ At: ${FRED}${CURDIR}${RS} ]\n[ ${FCYN}\u${RS}${HC}@${RS}${FBMAG}\h${RS} ${HC}${FBBLU}\t${RS} ${END}"
-# }
-
 export PROMPT_COMMAND=prompt_command
 
 ################################################################################
-### Alias Inclusion
-################################################################################
+# Alias Inclusion
 
 # Alias definitions.
 # These are sourced from a separate file (~/.bash_aliases).
@@ -125,10 +93,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 ################################################################################
-### Programmable Completion (Tab Completion)
-################################################################################
+# Programmable Completion (Tab Completion)
 
-# enable programmable completion features (you don't need to enable
+# Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -140,14 +107,16 @@ if ! shopt -oq posix; then
 fi
 
 ################################################################################
-### SSH Tab Completion
-################################################################################
+# SSH Tab Completion
 
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 ################################################################################
-### Miscellaneous
-################################################################################
+# Miscellaneous
+
+# Color for ls output
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Color for Grep
 export GREP_OPTIONS='--color=auto'
@@ -170,8 +139,7 @@ shopt -s cdspell;
 export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
 
 ################################################################################
-### Functions
-################################################################################
+# Functions
 
 # Allows for searching of Bundle IDs by application name
 # Written by Brett Terpstra
@@ -196,8 +164,7 @@ bid() {
 }
 
 ################################################################################
-### Extras Inclusion
-################################################################################
+# Extras Inclusion
 
 # These are sourced from a separate file (~/.bash_extras).
 # This is useful if you want per-machine changes to be made. Since this is at
