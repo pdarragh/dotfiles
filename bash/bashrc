@@ -57,16 +57,12 @@ BBWHT="\[\033[107m\]"           # background bold white
 
 ################################################################################
 # Prompt Customization
+# PS1
 
-# Requires git_prompt.
+# Include the git_prompt magic.
 if [ -f ~/.git_prompt ]; then
 	. ~/.git_prompt
-	git_branch=$(__git_ps1)
-else
-	git_branch=""
 fi
-
-# PS1
 
 # The following creates:
 #       [ HH:MM:SS | $(pwd) ]
@@ -85,9 +81,11 @@ prompt_command () {
 		# Color return value red
 		prev="${FBRED}r${ret}${def}"
 	fi
+	# Requires git_prompt.
+	git_branch="$(__git_ps1)"
 	# Build the git branch string.
-	if [ -z "${git_branch}" ]; then
-		git_display="| ${FBCYN}${git_branch} ${RS}"
+	if [ "${git_branch}" != "" ]; then
+		git_display="| g:${FBCYN}${git_branch} ${RS}"
 	else
 		git_display=""
 	fi
