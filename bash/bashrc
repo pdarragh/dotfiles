@@ -59,7 +59,6 @@ BBWHT="\[\033[107m\]"           # background bold white
 # Prompt Customization
 
 # Requires git_prompt.
-local git_branch
 if [ -f ~/.git_prompt ]; then
 	. ~/.git_prompt
 	git_branch=$(__git_ps1)
