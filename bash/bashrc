@@ -58,6 +58,15 @@ BBWHT="\[\033[107m\]"           # background bold white
 ################################################################################
 # Prompt Customization
 
+# Requires git_prompt.
+local git_branch
+if [ -f ~/.git_prompt ]; then
+	. ~/.git_prompt
+	git_branch=$(__git_ps1)
+else
+	git_branch=""
+fi
+
 # PS1
 
 # The following creates:
@@ -69,6 +78,7 @@ BBWHT="\[\033[107m\]"           # background bold white
 prompt_command () {
 	ret=$?
 	def=${FBBLK}
+	# Build the return value.
 	if [[ $ret -eq 0 ]]; then
 		# Color return value green
 		prev="${FBGRN}${HC}r0${def}"
@@ -76,8 +86,14 @@ prompt_command () {
 		# Color return value red
 		prev="${FBRED}r${ret}${def}"
 	fi
+	# Build the git branch string.
+	if [ -z "${git_branch}" ]; then
+		git_display="| ${FBCYN}${git_branch} ${RS}"
+	else
+		git_display=""
+	fi
 	export PS1="${RS}"
-	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd )${def} ${FWHT}]\n"
+	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd )${def} ${git_display}${FWHT}]\n"
 	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${def}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
 }
 
