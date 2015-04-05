@@ -62,6 +62,8 @@ BBWHT="\[\033[107m\]"           # background bold white
 # Include the git_prompt magic.
 if [ -f ~/.git_prompt ]; then
 	. ~/.git_prompt
+	GIT_PS1_SHOWDIRTYSTATE=true
+	GIT_PS1_SHOWUPSTREAM="auto"
 fi
 
 # The following creates:
