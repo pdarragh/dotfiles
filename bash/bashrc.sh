@@ -151,7 +151,7 @@ shopt -s histappend;
 shopt -s cdspell;
 
 # Modify $PATH
-export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include'
 
 ################################################################################
 # Functions

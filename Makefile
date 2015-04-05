@@ -11,7 +11,7 @@ current_dir := $(dir $(mkfile_path))
 
 .PHONY: default update install
 
-default: update install
+default: install
 
 update:
 	@echo "Updating to latest version..."
