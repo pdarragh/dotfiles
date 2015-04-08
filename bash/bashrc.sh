@@ -83,7 +83,7 @@ prompt_command () {
 		# Color return value red
 		prev="${FBRED}r${ret}${def}"
 	fi
-	# Requires git_prompt.
+    # Build a special git prompt.
 	git_branch="$(__git_ps1)"
 	# Build the git branch string.
 	if [ "${git_branch}" != "" ]; then
@@ -91,9 +91,16 @@ prompt_command () {
 	else
 		git_display=""
 	fi
+    # Check if this is an SSH session.
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+        host_color="${HC}${def}"
+    else
+        host_color="${def}"
+    fi
+    # Put it all together.
 	export PS1="${RS}"
 	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd )${def} ${git_display}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${def}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
+	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host_color}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
 }
 
 export PROMPT_COMMAND=prompt_command
