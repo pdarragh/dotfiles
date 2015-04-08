@@ -67,7 +67,7 @@ if [ -f ~/.git_prompt ]; then
 fi
 
 # The following creates:
-#       [ HH:MM:SS | $(pwd) ]
+#       [ HH:MM:SS | $(pwd) (| g: git info )]
 #       [ username | hostname | h\! | r$? ]\$
 # Which could appear as:
 #       [ 16:23:42 | /Users/pdarragh ]
@@ -87,20 +87,20 @@ prompt_command () {
 	git_branch="$(__git_ps1)"
 	# Build the git branch string.
 	if [ "${git_branch}" != "" ]; then
-		git_display="| g:${FBCYN}${git_branch} ${RS}"
+		git_display="${FWHT}| ${def}g:${FBCYN}${git_branch} ${RS}"
 	else
 		git_display=""
 	fi
     # Check if this is an SSH session.
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
-        host_color="${HC}${def}"
+        host="${FBYEL}\h${RS}"
     else
-        host_color="${def}"
+        host="${def}\h${RS}"
     fi
     # Put it all together.
 	export PS1="${RS}"
-	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd )${def} ${git_display}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host_color}\h${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
+	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd ) ${git_display}${FWHT}]\n"
+	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
 }
 
 export PROMPT_COMMAND=prompt_command
