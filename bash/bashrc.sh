@@ -104,7 +104,7 @@ prompt_command () {
     # Put it all together.
 	export PS1="${RS}"
 	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${def}${shell}${FWHT} | ${FBMAG}$( pwd ) ${git_display}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}\!${FWHT} | ${prev} ${RS}${FWHT}]\$ ${RS}"
+	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${RS}${FWHT}]\$ ${RS}"
 }
 
 export PROMPT_COMMAND=prompt_command
@@ -147,6 +147,9 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # Color for Grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;35;40'
+
+# History file
+export HISTFILE='~/.bash_history'
 
 # History size limits
 export HISTFILESIZE=100000
