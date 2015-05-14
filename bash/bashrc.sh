@@ -100,7 +100,7 @@ prompt_command () {
     # Put it all together.
 	export PS1="${RS}"
 	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd ) ${git_display}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${FWHT}]\$ ${RS}"
+	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${RS}]${FWHT}\$ ${RS}"
 }
 
 export PROMPT_COMMAND=prompt_command
