@@ -75,6 +75,10 @@ fi
 prompt_command () {
 	ret=$?
 	def=${FBBLK}
+	shell=$(echo $0)
+	if [ ${shell} == "-bash" ]; then
+		shell="bash"
+	fi
 	# Build the return value.
 	if [[ $ret -eq 0 ]]; then
 		# Color return value green
@@ -99,8 +103,8 @@ prompt_command () {
     fi
     # Put it all together.
 	export PS1="${RS}"
-	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${FBMAG}$( pwd ) ${git_display}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${RS}]${FWHT}\$ ${RS}"
+	export PS1+="${FWHT}[ ${def}\t${FWHT} | ${def}${shell}${FWHT} | ${FBMAG}$( pwd ) ${git_display}${FWHT}]\n"
+	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}\!${FWHT} | ${prev} ${RS}${FWHT}]\$ ${RS}"
 }
 
 export PROMPT_COMMAND=prompt_command
