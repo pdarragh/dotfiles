@@ -109,7 +109,7 @@ prompt_command () {
 	fi
     # Put it all together.
 	export PS1="${RS}"
-	export PS1+="${FWHT}[ ${FBYEL}\t${FWHT} | ${def}${shell}${FWHT} | ${FBMAG}$( pwd ) ${git_display}${FWHT}]\n"
+	export PS1+="${FWHT}[ ${FBYEL}\t${FWHT} | ${def}${shell}${FWHT} | ${FBMAG}$( pwd ) ${RS}${git_display}${FWHT}]\n"
 	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${RS}${FWHT}]${suid} ${RS}"
 }
 
