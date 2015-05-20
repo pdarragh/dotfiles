@@ -10,8 +10,11 @@
 ################################################################################
 # Prompt Customization
 
+set promptchars='$#'
+
 if ( -f ~/.tcsh_prompt ) then
-    alias precmd "csh ~/.tcsh_prompt"
+    # alias precmd "tcsh ~/.tcsh_prompt"
+    alias precmd 'set prompt="`tcsh ~/.tcsh_prompt`"'
 endif
 
 ################################################################################
