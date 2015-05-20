@@ -18,7 +18,7 @@ update:
 	-@git pull
 	@echo "Updated. You should now do 'make install' to put everything in place."
 
-install: install-bash install-vim
+install: install-bash install-tcsh install-vim
 	@echo "Creating symlink to the dotfiles directory: $(current_dir)."
 	-@$(RM) $(userhome)/.dotfiles
 	-@ln -sf $(current_dir) $(userhome)/.dotfiles
