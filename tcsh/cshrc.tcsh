@@ -13,8 +13,9 @@
 set promptchars='$#'
 
 if ( -f ~/.tcsh_prompt ) then
-    # alias precmd "tcsh ~/.tcsh_prompt"
-    alias precmd 'set prompt="`tcsh ~/.tcsh_prompt`"'
+    set curprompt="`echo $0`"
+    set curprompt="`basename ${curprompt}`"
+    alias precmd 'set prompt="`tcsh ~/.tcsh_prompt ${curprompt}`"'
 endif
 
 ################################################################################

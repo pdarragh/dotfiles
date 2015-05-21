@@ -1,5 +1,7 @@
 #!/bin/tcsh
 
+# Accepts one argument: the current shell.
+
 ################################################################################
 # ANSI Color Codes
 #
@@ -75,9 +77,15 @@ if ( $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION ) then
 else
     set host="${def}%m${RS}"
 endif
+# Set the current prompt string.
+if ( $?1 ) then
+    set curprompt="$1"
+else
+    set curprompt="tcsh"
+endif
 # Put it all together.
 set prompt="${RS}"
-set prompt="${prompt}${FWHT}[ ${FBYEL}%P${FWHT} | ${def}tcsh${FWHT} | ${FBMAG}`pwd`${FWHT} ]\n"
+set prompt="${prompt}${FWHT}[ ${FBYEL}%P${FWHT} | ${def}${curprompt}${FWHT} | ${FBMAG}`pwd`${FWHT} ]\n"
 set prompt="${prompt}${FWHT}[ ${FBCYN}%n${FWHT} | ${host}${FWHT} | ${def}h%h${FWHT} | ${prev} ${RS}${FWHT}]%# ${RS}"
 
 echo "${prompt}"

@@ -73,44 +73,73 @@ fi
 #       [ 16:23:42 | /Users/pdarragh ]
 #       [ pdarragh | mycomputer | h283 | r0 ]$
 prompt_command () {
-	ret=$?
-	def=${FBBLK}
-	shell=$(echo $0)
-	if [ ${shell} == "-bash" ]; then
-		shell="bash"
+	local my_time	# time
+	local my_shel	# shell
+	local my_diry	# directory
+	local my_gitd	# git repository information
+	local my_user	# user name
+	local my_host	# hostname
+	local my_hist	# history number
+	local my_rtrn	# return value
+	local my_suid	# superuser id prompt (e.g. $ or #)
+	
+	# This is the default color of "boring" items.
+	default="${FBBLK}"
+	
+	# Set the time.
+	my_time="${FBYEL}\t"
+	
+	# Set the shell.
+	shell="$(echo $0)"
+	if [[ ${shell} =~ -(.*) ]]; then
+		shell=${BASH_REMATCH[1]}
 	fi
-	# Build the return value.
-	if [[ $ret -eq 0 ]]; then
-		# Color return value green
-		prev="${FBGRN}${HC}r0${def}"
-	else
-		# Color return value red
-		prev="${FBRED}r${ret}${def}"
-	fi
-    # Build a special git prompt.
+	my_shel="${default}${shell}"
+	
+	# Set the current working directory.
+	my_diry="${FBMAG}$( pwd )"
+	
+	# Set the git prompt (if it's available)
 	git_branch="$(__git_ps1)"
-	# Build the git branch string.
 	if [ "${git_branch}" != "" ]; then
-		git_display="${FWHT}| ${def}g:${FBCYN}${git_branch} ${RS}"
+		my_gitd="${FWHT} | ${default}g:${FBCYN}${git_branch} "
 	else
-		git_display=""
+		my_gitd=""
 	fi
-    # Check if this is an SSH session.
-    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
-        host="${FBYEL}\h${RS}"
-    else
-        host="${def}\h${RS}"
-    fi
-	# Set the su indicator.
+	
+	# Set the user name and the superuser prompt indicator.
 	if [ "$(whoami)" == "root" ]; then
-		suid="#"
+		my_user="${HC}${FBYEL}${BBRED}\u"
+		my_suid="#"
 	else
-		suid="$"
+		my_user="${FBCYN}\u"
+		my_suid="$"
 	fi
-    # Put it all together.
+	
+	# Set the hostname. Colorizes if it's an SSH session.
+	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+        my_host="${FBYEL}\h"
+    else
+        my_host="${default}\h"
+    fi
+	
+	# Set the history number.
+	my_hist="${default}h\!"
+	
+	# Set the return status of the previous command.
+	retstat=$?
+	if [[ ${retstat} -eq 0 ]]; then
+		# Success. Color it green.
+		my_rtrn="${HC}${FBGRN}r0"
+	else
+		# Failed. Color it red.
+		my_rtrn="${FBRED}r${retstat}"
+	fi
+	
+	# Put it all together in the prompt. Magic!
 	export PS1="${RS}"
-	export PS1+="${FWHT}[ ${FBYEL}\t${FWHT} | ${def}${shell}${FWHT} | ${FBMAG}$( pwd ) ${RS}${git_display}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${FBCYN}\u${FWHT} | ${host}${FWHT} | ${def}h\!${FWHT} | ${prev} ${RS}${FWHT}]${suid} ${RS}"
+	export PS1+="${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT}${my_gitd}${RS}${FWHT}]\n"
+	export PS1+="${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
 }
 
 export PROMPT_COMMAND=prompt_command
