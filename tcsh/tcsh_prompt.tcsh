@@ -56,36 +56,60 @@ set BBWHT="%{\033[107m%}"           # background bold white
 # Prompt Customization
 #
 # The following creates:
-#       [ HH:MM:SS | $(pwd) (| g: git info )]
+#       [ HH:MM:SS | $(pwd) ]
 #       [ username | hostname | h\! | r$? ]\$
 # Which could appear as:
 #       [ 16:23:42 | /Users/pdarragh ]
 #       [ pdarragh | mycomputer | h283 | r0 ]$
-set ret="$?"
-set def="${FBBLK}"
-# Build the return value.
-if ( $ret == 0 ) then
-    # Color return value green
-    set prev="${FBGRN}${HC}r0${def}"
-else
-    # Color return value red
-    set prev="${FBRED}r${ret}${def}"
-endif
-# Check if this is an SSH session.
-if ( $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION ) then
-    set host="${FBYEL}%m${RS}"
-else
-    set host="${def}%m${RS}"
-endif
-# Set the current prompt string.
+
+# This is the default color of "boring" items.
+set default="${FBBLK}"
+
+# Set the time.
+set my_time="${FBYEL}%P"
+
+# Set the shell.
 if ( $?1 ) then
-    set curprompt="$1"
+    set my_shel="${default}$1"
 else
-    set curprompt="tcsh"
+    set my_shel="${default}tcsh"
 endif
-# Put it all together.
+
+# Set the current working directory.
+set my_diry="${FBMAG}`pwd`"
+
+# Set the user name and the superuser prompt indicator.
+if ( "`whoami`" == "root" ) then
+    set my_user="${HC}${FBYEL}${BBRED}%n"
+    set my_suid='#'
+else
+    set my_user="${FBCYN}%n"
+    set my_suid='$'
+endif
+
+# Set the hostname. Colorizes if it's an SSH session.
+if ( $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION ) then
+    set my_host="${FBYEL}%m"
+else
+    set my_host="${default}%m"
+endif
+
+# Set the history number.
+set my_hist="${default}h%h"
+
+# Set the return status of the previous command.
+set retstat=$?
+if ( ${retstat} == 0 ) then
+    # Success. Color it green.
+    set my_rtrn="${HC}${FBGRN}r0"
+else
+    # Failed. Color it red.
+    set my_rtrn="${FBRED}r${retstat}"
+endif
+
+# Put it all together in the prompt. Magic!
 set prompt="${RS}"
-set prompt="${prompt}${FWHT}[ ${FBYEL}%P${FWHT} | ${def}${curprompt}${FWHT} | ${FBMAG}`pwd`${FWHT} ]\n"
-set prompt="${prompt}${FWHT}[ ${FBCYN}%n${FWHT} | ${host}${FWHT} | ${def}h%h${FWHT} | ${prev} ${RS}${FWHT}]%# ${RS}"
+set prompt="${prompt}${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT} ]\n"
+set prompt="${prompt}${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
 
 echo "${prompt}"
