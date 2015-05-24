@@ -100,7 +100,7 @@ prompt_command () {
 	my_diry="${FBMAG}$( pwd )"
 	
 	# Set the git prompt (if it's available)
-	my_gitd=""
+	my_gitd=" "
 	if [ -f ~/.git_prompt ]; then
 		git_branch="$(__git_ps1)"
 		if [ "${git_branch}" != "" ]; then
