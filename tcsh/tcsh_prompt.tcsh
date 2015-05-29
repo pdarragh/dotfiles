@@ -2,6 +2,9 @@
 
 # Accepts one argument: the current shell.
 
+set retstat=$?
+# echo "${retstat}" > /tmp/retstat
+
 ################################################################################
 # ANSI Color Codes
 #
@@ -98,7 +101,6 @@ endif
 set my_hist="${default}h%h"
 
 # Set the return status of the previous command.
-set retstat=$?
 if ( ${retstat} == 0 ) then
     # Success. Color it green.
     set my_rtrn="${HC}${FBGRN}r0"

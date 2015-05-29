@@ -73,6 +73,9 @@ fi
 #       [ 16:23:42 | /Users/pdarragh ]
 #       [ pdarragh | mycomputer | h283 | r0 ]$
 prompt_command () {
+	# This must be done first to correctly capture the return status.
+	retstat=$?
+	
 	local my_time	# time
 	local my_shel	# shell
 	local my_diry	# directory
@@ -126,9 +129,8 @@ prompt_command () {
 	
 	# Set the history number.
 	my_hist="${default}h\!"
-	
+
 	# Set the return status of the previous command.
-	retstat=$?
 	if [[ ${retstat} -eq 0 ]]; then
 		# Success. Color it green.
 		my_rtrn="${HC}${FBGRN}r0"
