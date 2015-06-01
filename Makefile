@@ -5,7 +5,7 @@
 ## Thanks to mitsuhiko on GitHub for the idea.
 ##
 
-userhome := $${HOME}
+userhome    := $${HOME}
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(dir $(mkfile_path))
 
