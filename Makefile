@@ -47,10 +47,10 @@ install-vim:
 .PHONY: install-tcsh
 install-tcsh:
 	@echo "Installing prefs: tcsh"
-	-@$(RM) $(userhome)/.cshrc
+	-@$(RM) $(userhome)/.tcshrc
 	-@$(RM) $(userhome)/.tcsh_aliases
 	-@$(RM) $(userhome)/.tcsh_prompt
-	-@ln -sf $(current_dir)tcsh/cshrc.tcsh $(userhome)/.cshrc
+	-@ln -sf $(current_dir)tcsh/tcshrc.tcsh $(userhome)/.tcshrc
 	-@ln -sf $(current_dir)tcsh/tcsh_aliases.tcsh $(userhome)/.tcsh_aliases
 	-@ln -sf $(current_dir)tcsh/tcsh_prompt.tcsh $(userhome)/.tcsh_prompt
 

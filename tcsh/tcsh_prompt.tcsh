@@ -1,9 +1,8 @@
 #!/bin/tcsh
 
-# Accepts one argument: the current shell.
-
-set retstat=$?
-# echo "${retstat}" > /tmp/retstat
+# Accepts two arguments:
+#  $1: current shell (e.g. 'tcsh', 'bash')
+#  $2: the return status of the previous command
 
 ################################################################################
 # ANSI Color Codes
@@ -101,6 +100,7 @@ endif
 set my_hist="${default}h%h"
 
 # Set the return status of the previous command.
+set retstat=$2
 if ( ${retstat} == 0 ) then
     # Success. Color it green.
     set my_rtrn="${HC}${FBGRN}r0"
