@@ -120,6 +120,16 @@ set si
 set wrap
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Comments
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set C-style comments.
+" These are invoked by typing "/*" on a line, and then vim will automatically
+" indent for the following lines. Just type "/" on the last line to end it.
+set comments=s1:/*,mb:*,ex:*/
+set comments+=fb:*
+set formatoptions+=r
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
