@@ -239,3 +239,6 @@ bid() {
 if [ -f ~/.bash_extras ]; then
     . ~/.bash_extras
 fi
+
+export NVM_DIR="/Users/pdarragh/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
