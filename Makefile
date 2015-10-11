@@ -20,7 +20,6 @@ update:
 
 install: install-bash install-tcsh install-vim
 	@echo "Creating symlink to the dotfiles directory: $(current_dir)."
-	-@$(RM) $(userhome)/.dotfiles
 	-@ln -sf $(current_dir) $(userhome)/.dotfiles
 
 .PHONY: install-bash
