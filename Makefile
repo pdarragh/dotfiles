@@ -30,11 +30,13 @@ install-bash:
 	-@$(RM) $(userhome)/.bash_aliases
 	-@$(RM) $(userhome)/.inputrc
 	-@$(RM) $(userhome)/.git_prompt
+	-@$(RM) $(userhome)/.man_colors
 	-@ln -sf $(current_dir)bash/bashrc.sh $(userhome)/.bashrc
 	-@ln -sf $(current_dir)bash/bash_profile.sh $(userhome)/.bash_profile
 	-@ln -sf $(current_dir)bash/bash_aliases.sh $(userhome)/.bash_aliases
 	-@ln -sf $(current_dir)bash/inputrc.sh $(userhome)/.inputrc
 	-@ln -sf $(current_dir)bash/git_prompt.sh $(userhome)/.git_prompt
+	-@ln -sf $(current_dir)bash/man_colors.sh $(userhome)/.man_colors
 
 .PHONY: install-vim
 install-vim:

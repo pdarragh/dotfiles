@@ -231,6 +231,13 @@ bid() {
 }
 
 ################################################################################
+# Man Page Colors Inclusion
+# Helps to color the man pages all pretty-like.
+if [ -f ~/.man_colors ]; then
+    . ~/.man_colors
+fi
+
+################################################################################
 # Extras Inclusion
 
 # These are sourced from a separate file (~/.bash_extras).
@@ -240,5 +247,3 @@ if [ -f ~/.bash_extras ]; then
     . ~/.bash_extras
 fi
 
-export NVM_DIR="/Users/pdarragh/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
