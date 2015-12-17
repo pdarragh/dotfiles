@@ -184,8 +184,8 @@ complete -d cd
 # Miscellaneous
 
 # Color for ls output
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+#export CLICOLOR=1
+#export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Color for Grep
 export GREP_OPTIONS='--color=auto'
@@ -208,38 +208,25 @@ shopt -s histappend;
 shopt -s cdspell;
 
 # Modify $PATH
+#eval "$(/usr/libexec/path_helper)"
 export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include'
-
-################################################################################
-# Functions
-
-# Allows for searching of Bundle IDs by application name
-# Written by Brett Terpstra
-bid() {
-	local shortname location
-
-	# combine all args as regex
-	# (and remove ".app" from the end if it exists due to autocomplete)
-	shortname=$(echo "${@%%.app}"|sed 's/ /.*/g')
-	# if the file is a full match in apps folder, roll with it
-	if [ -d "/Applications/$shortname.app" ]; then
-		location="/Applications/$shortname.app"
-	else # otherwise, start searching
-		location=$(mdfind -onlyin /Applications -onlyin ~/Applications -onlyin /Developer/Applications 'kMDItemKind==Application'|awk -F '/' -v re="$shortname" 'tolower($NF) ~ re {print $0}'|head -n1)
-	fi
-	# No results? Die.
-	[[ -z $location || $location = "" ]] && echo "$1 not found, I quit" && return
-	# Otherwise, find the bundleid using spotlight metadata
-	bundleid=$(mdls -name kMDItemCFBundleIdentifier -r "$location")
-	# return the result or an error message
-	[[ -z $bundleid || $bundleid = "" ]] && echo "Error getting bundle ID for \"$@\"" || echo "$location: $bundleid"
-}
 
 ################################################################################
 # Man Page Colors Inclusion
 # Helps to color the man pages all pretty-like.
 if [ -f ~/.man_colors ]; then
     . ~/.man_colors
+fi
+
+################################################################################
+# ls Colors Inclusion
+# Makes all the outputs of `ls`-type commands pretty.
+if [ -f ~/.dircolors ]; then
+    if [ -f "/usr/local/bin/gdircolors" ]; then
+        eval `/usr/local/bin/gdircolors -b ~/.dircolors`
+    else
+        echo "Install GNU coreutils via Homebrew with: brew install coreutils --default-names"
+    fi
 fi
 
 ################################################################################
