@@ -39,7 +39,7 @@ install-bash:
 	-@ln -sf $(current_dir)bash/inputrc.sh $(userhome)/.inputrc
 	-@ln -sf $(current_dir)bash/git_prompt.sh $(userhome)/.git_prompt
 	-@ln -sf $(current_dir)bash/man_colors.sh $(userhome)/.man_colors
-	-@ln -sf $(current_dir)bash/dircolors.256dark $(userhome)/.dircolors
+	-@ln -sf $(current_dir)bash/dircolors.custom $(userhome)/.dircolors
 
 .PHONY: install-vim
 install-vim:
