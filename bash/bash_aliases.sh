@@ -5,6 +5,10 @@ alias untar="tar -xvf"
 alias untargz="tar -xzvf"
 alias untarbz2="tar -xjvf"
 
+# Python
+# (this may fail if bpython is not installed... oops)
+alias python="bpython"
+
 # Platform-specific
 if [[ "$(uname)" == "Darwin" ]]; then
     # I like installing the GNU coreutils ls command, so use that if available.

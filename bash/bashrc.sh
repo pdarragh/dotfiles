@@ -97,10 +97,10 @@ prompt_command () {
 	if [[ ${shell} =~ -(.*) ]]; then
 		shell=${BASH_REMATCH[1]}
 	fi
-	my_shel="${default}${shell}"
+	my_shel="\[\033[38;5;244m\]${shell}"
 	
 	# Set the current working directory.
-	my_diry="${FBMAG}$( pwd )"
+	my_diry="\[\033[38;5;167m\]$( pwd )"
 	
 	# Set the git prompt (if it's available)
 	my_gitd=" "
@@ -116,7 +116,7 @@ prompt_command () {
 		my_user="${HC}${FBYEL}${BBRED}\u"
 		my_suid="#"
 	else
-		my_user="${FBCYN}\u"
+		my_user="\[\033[38;5;37m\]\u"
 		my_suid="$"
 	fi
 	
@@ -143,18 +143,12 @@ prompt_command () {
 	export PS1="${RS}"
 	export PS1+="${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT}${my_gitd}${RS}${FWHT}]\n"
 	export PS1+="${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
+	#export PS1="${RS}"
+	#export PS1+="${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT}${my_gitd}${RS}${FWHT}]\n"
+	#export PS1+="${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
 }
 
 export PROMPT_COMMAND=prompt_command
-
-################################################################################
-# Alias Inclusion
-
-# Alias definitions.
-# These are sourced from a separate file (~/.bash_aliases).
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 ################################################################################
 # Programmable Completion (Tab Completion)
@@ -237,5 +231,14 @@ fi
 # the bottom of .bash_profile, these will be the last changes to be effected.
 if [ -f ~/.bash_extras ]; then
     . ~/.bash_extras
+fi
+
+################################################################################
+# Alias Inclusion
+
+# Alias definitions.
+# These are sourced from a separate file (~/.bash_aliases).
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi
 
