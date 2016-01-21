@@ -4,4 +4,5 @@ fi
 
 ###############################################################################
 # Setting the Path
-export PATH="~/anaconda/bin:${PATH}"
+export PATH="~/.local/bin:~/anaconda/bin:${PATH}"
+
