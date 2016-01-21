@@ -178,8 +178,8 @@ complete -d cd
 # Miscellaneous
 
 # Color for ls output
-#export CLICOLOR=1
-#export LSCOLORS=GxFxCxDxBxegedabagaced
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Color for Grep
 export GREP_OPTIONS='--color=auto'
