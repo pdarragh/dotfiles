@@ -61,9 +61,9 @@ BBWHT="\[\033[107m\]"           # background bold white
 
 # Include the git_prompt magic.
 if [ -f ~/.git_prompt ]; then
-	. ~/.git_prompt
-	GIT_PS1_SHOWDIRTYSTATE=true
-	GIT_PS1_SHOWUPSTREAM="auto"
+    . ~/.git_prompt
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWUPSTREAM="auto"
 fi
 
 # The following creates:
@@ -73,79 +73,76 @@ fi
 #       [ 16:23:42 | /Users/pdarragh ]
 #       [ pdarragh | mycomputer | h283 | r0 ]$
 prompt_command () {
-	# This must be done first to correctly capture the return status.
-	retstat=$?
-	
-	local my_time	# time
-	local my_shel	# shell
-	local my_diry	# directory
-	local my_gitd	# git repository information
-	local my_user	# user name
-	local my_host	# hostname
-	local my_hist	# history number
-	local my_rtrn	# return value
-	local my_suid	# superuser id prompt (e.g. $ or #)
-	
-	# This is the default color of "boring" items.
-	default="${FBBLK}"
-	
-	# Set the time.
-	my_time="${FBYEL}\t"
-	
-	# Set the shell.
-	shell="$(echo $0)"
-	if [[ ${shell} =~ -(.*) ]]; then
-		shell=${BASH_REMATCH[1]}
-	fi
-	my_shel="\[\033[38;5;244m\]${shell}"
-	
-	# Set the current working directory.
-	my_diry="\[\033[38;5;167m\]$( pwd )"
-	
-	# Set the git prompt (if it's available)
-	my_gitd=" "
-	if [ -f ~/.git_prompt ]; then
-		git_branch="$(__git_ps1)"
-		if [ "${git_branch}" != "" ]; then
-			my_gitd="${FWHT} | ${default}g:${FBCYN}${git_branch} "
-		fi
-	fi
-	
-	# Set the user name and the superuser prompt indicator.
-	if [ "$(whoami)" == "root" ]; then
-		my_user="${HC}${FBYEL}${BBRED}\u"
-		my_suid="#"
-	else
-		my_user="\[\033[38;5;37m\]\u"
-		my_suid="$"
-	fi
-	
-	# Set the hostname. Colorizes if it's an SSH session.
-	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+    # This must be done first to correctly capture the return status.
+    retstat=$?
+    
+    local my_time    # time
+    local my_shel    # shell
+    local my_diry    # directory
+    local my_gitd    # git repository information
+    local my_user    # user name
+    local my_host    # hostname
+    local my_hist    # history number
+    local my_rtrn    # return value
+    local my_suid    # superuser id prompt (e.g. $ or #)
+    
+    # This is the default color of "boring" items.
+    default="${FBBLK}"
+    
+    # Set the time.
+    my_time="${FBYEL}\t"
+    
+    # Set the shell.
+    shell="$(echo $0)"
+    if [[ ${shell} =~ -(.*) ]]; then
+        shell=${BASH_REMATCH[1]}
+    fi
+    my_shel="\[\033[38;5;244m\]${shell}"
+    
+    # Set the current working directory.
+    my_diry="\[\033[38;5;167m\]$( pwd )"
+    
+    # Set the git prompt (if it's available)
+    my_gitd=" "
+    if [ -f ~/.git_prompt ]; then
+        git_branch="$(__git_ps1)"
+        if [ "${git_branch}" != "" ]; then
+            my_gitd="${FWHT} | ${default}g:${FBCYN}${git_branch} "
+        fi
+    fi
+    
+    # Set the user name and the superuser prompt indicator.
+    if [ "$(whoami)" == "root" ]; then
+        my_user="${HC}${FBYEL}${BBRED}\u"
+        my_suid="#"
+    else
+        my_user="\[\033[38;5;37m\]\u"
+        my_suid="$"
+    fi
+    
+    # Set the hostname. Colorizes if it's an SSH session.
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
         my_host="${FBYEL}\h"
     else
         my_host="${default}\h"
     fi
-	
-	# Set the history number.
-	my_hist="${default}h\!"
+    
+    # Set the history number.
+    my_hist="${default}h\!"
 
-	# Set the return status of the previous command.
-	if [[ ${retstat} -eq 0 ]]; then
-		# Success. Color it green.
-		my_rtrn="${HC}${FBGRN}r0"
-	else
-		# Failed. Color it red.
-		my_rtrn="${FBRED}r${retstat}"
-	fi
-	
-	# Put it all together in the prompt. Magic!
-	export PS1="${RS}"
-	export PS1+="${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT}${my_gitd}${RS}${FWHT}]\n"
-	export PS1+="${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
-	#export PS1="${RS}"
-	#export PS1+="${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT}${my_gitd}${RS}${FWHT}]\n"
-	#export PS1+="${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
+    # Set the return status of the previous command.
+    if [[ ${retstat} -eq 0 ]]; then
+        # Success. Color it green.
+        my_rtrn="${HC}${FBGRN}r0"
+    else
+        # Failed. Color it red.
+        my_rtrn="${FBRED}r${retstat}"
+    fi
+    
+    # Put it all together in the prompt. Magic!
+    export PS1="${RS}"
+    export PS1+="${FWHT}[ ${my_time}${RS}${FWHT} | ${my_shel}${RS}${FWHT} | ${my_diry}${RS}${FWHT}${my_gitd}${RS}${FWHT}]\n"
+    export PS1+="${FWHT}[ ${my_user}${RS}${FWHT} | ${my_host}${RS}${FWHT} | ${my_hist}${RS}${FWHT} | ${my_rtrn}${RS}${FWHT} ]${my_suid}${RS} "
 }
 
 export PROMPT_COMMAND=prompt_command
