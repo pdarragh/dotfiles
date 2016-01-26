@@ -122,7 +122,7 @@ CAPABILITY              30;41                   # file with capability
 STICKY_OTHER_WRITABLE   48;5;64;38;5;230        # dir that is sticky and other-writable (+t,o+w)
 OTHER_WRITABLE          48;5;235;38;5;33        # dir that is other-writable (o+w) and not sticky
 STICKY                  48;5;33;38;5;230        # dir with the sticky bit set (+t) and not other-writable
-EXEC                    00;38;5;64              # executable file
+EXEC                    1;38;5;81               # executable file
 
 ## Archives or compressed (violet + bold for compression)
 .tar    00;38;5;61
