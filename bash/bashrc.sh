@@ -215,9 +215,14 @@ fi
 if [ -f ~/.dircolors ]; then
     if [ "$(uname)" == "Darwin" ]; then
         if [ -f "/usr/local/bin/gdircolors" ]; then
-            eval `/usr/local/bin/gdircolors -b ~/.dircolors`
+            eval $(/usr/local/bin/gdircolors -b ~/.dircolors)
         else
             echo "Install GNU coreutils via Homebrew with: brew install coreutils --default-names"
+        fi
+    else
+        drclrs="$(which dircolors)"
+        if [ $? -eq 0 ]; then
+            eval $($drclrs -b ~/.dircolors)
         fi
     fi
 fi
