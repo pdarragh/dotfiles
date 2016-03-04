@@ -213,10 +213,12 @@ fi
 # ls Colors Inclusion
 # Makes all the outputs of `ls`-type commands pretty.
 if [ -f ~/.dircolors ]; then
-    if [ -f "/usr/local/bin/gdircolors" ]; then
-        eval `/usr/local/bin/gdircolors -b ~/.dircolors`
-    else
-        echo "Install GNU coreutils via Homebrew with: brew install coreutils --default-names"
+    if [ "$(uname)" == "Darwin" ]; then
+        if [ -f "/usr/local/bin/gdircolors" ]; then
+            eval `/usr/local/bin/gdircolors -b ~/.dircolors`
+        else
+            echo "Install GNU coreutils via Homebrew with: brew install coreutils --default-names"
+        fi
     fi
 fi
 

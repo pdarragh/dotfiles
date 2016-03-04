@@ -2,8 +2,11 @@ alias lsn="\ls"
 alias dir="ls"
 
 alias untar="tar -xvf"
-alias untargz="tar -xzvf"
-alias untarbz2="tar -xjvf"
+alias untargz="tar -xvzf"
+alias untarbz2="tar -xvjf"
+alias maketar="tar -cvf"
+alias maketargz="tar -cvzf"
+alias maketarbz2="tar -cvjf"
 
 # Python
 # (this may fail if bpython is not installed... oops)
