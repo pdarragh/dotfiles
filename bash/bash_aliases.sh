@@ -8,10 +8,6 @@ alias maketar="tar -cvf"
 alias maketargz="tar -cvzf"
 alias maketarbz2="tar -cvjf"
 
-# Python
-# (this may fail if bpython is not installed... oops)
-alias python="bpython"
-
 # Platform-specific
 if [[ "$(uname)" == "Darwin" ]]; then
     # I like installing the GNU coreutils ls command, so use that if available.
