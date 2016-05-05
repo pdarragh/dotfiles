@@ -18,8 +18,8 @@ Control-j: menu-complete
 set mark-symlinked-directories on
 
 # Use already-typed text as prefix for history search
-"\e[B": history-serach-forward
-"\e[A": history-serach-backward
+"\e[B": history-search-forward
+"\e[A": history-search-backward
 
 # Query for autocomplete confirmation if more than 200 matches
 set completion-query-items 200

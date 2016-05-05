@@ -7,6 +7,7 @@ alias untarbz2="tar -xvjf"
 alias maketar="tar -cvf"
 alias maketargz="tar -cvzf"
 alias maketarbz2="tar -cvjf"
+alias mount-do-personal="mkdir /Volumes/DO-Personal && sshfs -o allow_other,defer_permissions root@192.241.205.97:/ /Volumes/DO-Personal"
 
 # Python
 # (this may fail if bpython is not installed... oops)
