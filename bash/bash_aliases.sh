@@ -9,10 +9,6 @@ alias maketargz="tar -cvzf"
 alias maketarbz2="tar -cvjf"
 alias mount-do-personal="mkdir /Volumes/DO-Personal && sshfs -o allow_other,defer_permissions root@192.241.205.97:/ /Volumes/DO-Personal"
 
-# Python
-# (this may fail if bpython is not installed... oops)
-alias python="bpython"
-
 # Platform-specific
 if [[ "$(uname)" == "Darwin" ]]; then
     # I like installing the GNU coreutils ls command, so use that if available.
