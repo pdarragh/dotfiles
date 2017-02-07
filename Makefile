@@ -29,6 +29,7 @@ install-bash:
 	-@$(RM) $(userhome)/.bashrc
 	-@$(RM) $(userhome)/.bash_profile
 	-@$(RM) $(userhome)/.bash_aliases
+	-@$(RM) $(userhome)/.bash_extras
 	-@$(RM) $(userhome)/.inputrc
 	-@$(RM) $(userhome)/.git_prompt
 	-@$(RM) $(userhome)/.man_colors
@@ -36,6 +37,7 @@ install-bash:
 	-@ln -sf $(current_dir)bash/bashrc.sh $(userhome)/.bashrc
 	-@ln -sf $(current_dir)bash/bash_profile.sh $(userhome)/.bash_profile
 	-@ln -sf $(current_dir)bash/bash_aliases.sh $(userhome)/.bash_aliases
+	-@ln -sf $(current_dir)bash/bash_extras.sh $(userhome)/.bash_extras
 	-@ln -sf $(current_dir)bash/inputrc.sh $(userhome)/.inputrc
 	-@ln -sf $(current_dir)bash/git_prompt.sh $(userhome)/.git_prompt
 	-@ln -sf $(current_dir)bash/man_colors.sh $(userhome)/.man_colors

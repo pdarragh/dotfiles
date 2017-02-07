@@ -87,7 +87,8 @@ prompt_command () {
     local my_suid    # superuser id prompt (e.g. $ or #)
     
     # This is the default color of "boring" items.
-    default="${FBBLK}"
+    # default="${FBBLK}"
+    default="\[\033[38;5;244m\]"
     
     # Set the time.
     my_time="${FBYEL}\t"
@@ -133,10 +134,10 @@ prompt_command () {
     # Set the return status of the previous command.
     if [[ ${retstat} -eq 0 ]]; then
         # Success. Color it green.
-        my_rtrn="${HC}${FBGRN}r0"
+        my_rtrn="${HC}\[\033[38;5;41m\]r0"
     else
         # Failed. Color it red.
-        my_rtrn="${FBRED}r${retstat}"
+        my_rtrn="\[\033[38;5;196m\]r${retstat}"
     fi
     
     # Put it all together in the prompt. Magic!
@@ -200,7 +201,11 @@ shopt -s cdspell;
 
 # Modify $PATH
 #eval "$(/usr/libexec/path_helper)"
-export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include'
+export PATH="$HOME/bin:$HOME/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include"
+#export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include'
+
+# Set $GOPATH
+export GOPATH="$HOME/Programming/gocode"
 
 ################################################################################
 # Man Page Colors Inclusion
@@ -246,3 +251,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+
+# added by travis gem
+[ -f /Users/pdarragh/.travis/travis.sh ] && source /Users/pdarragh/.travis/travis.sh
