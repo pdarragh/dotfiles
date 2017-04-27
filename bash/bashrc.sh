@@ -187,17 +187,17 @@ export GREP_COLOR='1;35;40'
 # export HISTFILE='~/.bash_history'
 
 # History size limits
-export HISTFILESIZE=100000
-export HISTSIZE=100000
+HISTFILESIZE=100000
+HISTSIZE=100000
 
 # Prepend the date and time to history entries
-export HISTTIMEFORMAT='%a %F %T%t'
+HISTTIMEFORMAT='%a %F %T%t'
 
 # Append to the history file instead of overwriting
-shopt -s histappend;
+shopt -s histappend
 
 # Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+shopt -s cdspell
 
 # Modify $PATH
 #eval "$(/usr/libexec/path_helper)"
