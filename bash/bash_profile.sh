@@ -13,3 +13,5 @@ export PATH="/Users/pdarragh/anaconda/bin:$PATH"
 # added for GHC/Cabal
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
+# added for ANTLR 4
+export ANTLR_CLASSPATH=".:/usr/local/lib/antlr-4.7-complete.jar:${CLASSPATH}"

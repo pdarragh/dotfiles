@@ -356,3 +356,10 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+" Use plugins
+call plug#begin()
+
+Plug 'sheerun/vim-polyglot'
+
+call plug#end()
