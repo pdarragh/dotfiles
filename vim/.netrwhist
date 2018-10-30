@@ -1,3 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/pdarragh/Programming/Projects/dotfiles'
+let g:netrw_dirhist_2='/Users/pdarragh/Development/cs6960-fall17/pdarragh/assignment3'
+let g:netrw_dirhist_3='/Users/pdarragh/Development/testrepo-1'

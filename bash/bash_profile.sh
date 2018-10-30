@@ -7,11 +7,9 @@ if [ -f ~/.bashrc ]; then
 fi
 
 ###############################################################################
-# added by Anaconda3 4.2.0 installer
-export PATH="/Users/pdarragh/anaconda/bin:$PATH"
-
 # added for GHC/Cabal
 export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
-# added for ANTLR 4
-export ANTLR_CLASSPATH=".:/usr/local/lib/antlr-4.7-complete.jar:${CLASSPATH}"
+# added for Ocaml
+. /Users/pdarragh/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

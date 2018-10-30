@@ -26,3 +26,6 @@ set completion-query-items 200
 
 # Show extra information when autocompleting, like `ls -F`
 set visible-stats on
+
+# Don't run pasted commands
+set enable-bracketed-paste on

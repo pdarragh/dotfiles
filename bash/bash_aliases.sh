@@ -9,7 +9,12 @@ alias maketar="tar -cvf"
 alias maketargz="tar -cvzf"
 alias maketarbz2="tar -cvjf"
 
-alias mount-do-personal="mkdir /Volumes/DO-Personal && sshfs -o allow_other,defer_permissions root@192.241.205.97:/ /Volumes/DO-Personal"
+alias python="/usr/local/bin/python2"
+alias blender="/usr/local/bin/blender"
+
+alias viper="~/Development/Viper/viper.py"
+
+#alias mount-do-personal="mkdir /Volumes/DO-Personal && sshfs -o allow_other,defer_permissions root@192.241.205.97:/ /Volumes/DO-Personal"
 
 # Platform-specific
 if [[ "$(uname)" == "Darwin" ]]; then
