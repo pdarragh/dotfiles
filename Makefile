@@ -18,7 +18,7 @@ update:
 	-@git pull
 	@echo "Updated. You should now do 'make install' to put everything in place."
 
-install: install-bash install-tcsh install-vim
+install: install-bash install-tcsh install-zsh install-vim
 	@echo "Creating symlink to the dotfiles directory: $(current_dir)."
 	-@$(RM) $(userhome)/.dotfiles
 	-@ln -sf $(current_dir) $(userhome)/.dotfiles
@@ -59,6 +59,36 @@ install-tcsh:
 	-@ln -sf $(current_dir)tcsh/tcshrc.tcsh $(userhome)/.tcshrc
 	-@ln -sf $(current_dir)tcsh/tcsh_aliases.tcsh $(userhome)/.tcsh_aliases
 	-@ln -sf $(current_dir)tcsh/tcsh_prompt.tcsh $(userhome)/.tcsh_prompt
+
+install-zsh: export INSTALL_OMZ := true
+install-zsh: OMZ_DIR ?= $(userhome)/.oh-my-zsh
+
+.PHONY: install-zsh
+install-zsh:
+	@echo "Installing prefs: zsh"
+	-@$(RM) $(userhome)/.zshrc
+	-@$(RM) $(userhome)/.zprofile
+	-@$(RM) $(userhome)/.zshenv
+	-@ln -sf $(current_dir)/zsh/zshrc.zsh $(userhome)/.zshrc
+	-@ln -sf $(current_dir)/zsh/zprofile.zsh $(userhome)/.zprofile
+	-@ln -sf $(current_dir)/zsh/zshenv.zsh $(userhome)/.zshenv
+	@if [ ! -d "$(OMZ_DIR)" ]; then \
+		echo "No Oh My Zsh directory found at $(OMZ_DIR)."; \
+		/bin/echo -n "Would you like to install Oh My Zsh? [Y/n] "; \
+		read RESPONSE; \
+		if [[ "$$RESPONSE" == [nN]* ]]; then \
+			export INSTALL_OMZ=false; \
+		elif [[ "$$RESPONSE" == [yY]* || -z "$$RESPONSE" ]]; then \
+			echo "Installing Oh My Zsh..."; \
+			sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
+		else \
+			echo "Invalid response: \"$$RESPONSE\""; \
+			exit 1; \
+		fi; \
+	fi; \
+	if $$INSTALL_OMZ; then \
+		ln -sf $(current_dir)/zsh/custom $(OMZ_DIR); \
+	fi
 
 save:
 	-@git add --all .
