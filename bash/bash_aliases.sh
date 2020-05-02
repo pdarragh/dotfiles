@@ -24,7 +24,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
     else
         alias ls="ls -FGlah"
     fi
-    alias gateway="route -n get default | grep gateway | sed 's~[^0-9]*\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]\)$~\1~'"
+    if [ -e /usr/local/bin/gmake ]; then
+        alias make=gmake
+    fi
+    # Take files out of quarantine:
+    alias liberate="xattr -d com.apple.quarantine"
 elif [[ "$(uname)" == "Linux" ]]; then
     alias ls="ls -Flah --color=auto"
 fi

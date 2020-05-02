@@ -397,5 +397,9 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 call plug#begin()
 
 Plug 'sheerun/vim-polyglot'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
 
 call plug#end()

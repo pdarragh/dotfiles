@@ -180,7 +180,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Color for Grep
-#export GREP_OPTIONS='--color=auto'
+export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;35;40'
 
 # History file
@@ -201,8 +201,7 @@ shopt -s cdspell
 
 # Modify $PATH
 #eval "$(/usr/libexec/path_helper)"
-export PATH="$HOME/bin:$HOME/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include"
-#export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include'
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/lib:/usr/local/include"
 
 # Set $GOPATH
 export GOPATH="$HOME/Programming/gocode"

@@ -62,6 +62,7 @@ install-tcsh:
 
 install-zsh: export INSTALL_OMZ := true
 install-zsh: OMZ_DIR ?= $(userhome)/.oh-my-zsh
+install-zsh: omz_extras_dir := $(current_dir)/zsh/extras
 
 .PHONY: install-zsh
 install-zsh:
@@ -86,8 +87,8 @@ install-zsh:
 			exit 1; \
 		fi; \
 	fi; \
-	if $$INSTALL_OMZ; then \
-		ln -sf $(current_dir)/zsh/custom $(OMZ_DIR); \
+	if [ -d $(omz_extras_dir) ] && $$INSTALL_OMZ; then \
+		ln -sf $(omz_extras_dir) $(OMZ_DIR)/custom/from-dotfiles; \
 	fi
 
 save:

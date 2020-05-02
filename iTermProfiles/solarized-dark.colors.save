@@ -1,0 +1,23 @@
+#002731  // Ansi 0 Color	// 
+#D01B24  // Ansi 1 Color	// 
+#50EE84  // Ansi 10 Color	// 
+#B17E28  // Ansi 11 Color	// 
+#178DC7  // Ansi 12 Color	// 
+#E14D8E  // Ansi 13 Color	// 
+#00B29E  // Ansi 14 Color	// 
+#FCF4DC  // Ansi 15 Color	// 
+#6BBE6C  // Ansi 2 Color	// 
+#A57705  // Ansi 3 Color	// 
+#2075C7  // Ansi 4 Color	// 
+#C61B6E  // Ansi 5 Color	// 
+#259185  // Ansi 6 Color	// 
+#E9E2CB  // Ansi 7 Color	// 
+#006388  // Ansi 8 Color	// 
+#F4153B  // Ansi 9 Color	// 
+#001E26  // Background Color	// 
+#B4D4D2  // Bold Color		// 
+#F34A00  // Cursor Color	// 
+#002731  // Cursor Text Color	// 
+#9BC1C2  // Foreground Color	// 
+#798F8E  // Selected Text Color	// 
+#003747  // Selection Color	// 
