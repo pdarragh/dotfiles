@@ -11,6 +11,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 # Path for Racket installed packages.
 export PATH="/Applications/Racket v7.3/share/bin:$HOME/Library/Racket/7.3/bin:$PATH"
+# Path for Ruby.
+export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 
 ########
 # Extra GHC environment stuff.

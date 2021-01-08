@@ -73,9 +73,11 @@ plugins=(brew
          command-not-found
          dotenv
          pip
-         zsh-autosuggestions)
+         zsh-autosuggestions
+         wd)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zshenv
 
 # User configuration
 
@@ -108,6 +110,8 @@ alias untarbz2="tar -xvjf"
 alias maketar="tar -cvf"
 alias maketargz="tar -cvzf"
 alias maketarbz2="tar -cvjf"
+
+alias youtube-dl-best="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 
 # Platform-specific
 if [[ "$(uname)" == "Darwin" ]]; then
