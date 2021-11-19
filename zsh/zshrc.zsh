@@ -73,11 +73,9 @@ plugins=(brew
          command-not-found
          dotenv
          pip
-         zsh-autosuggestions
          wd)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zshenv
 
 # User configuration
 
@@ -104,31 +102,9 @@ source ~/.zshenv
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias untar="tar -xvf"
-alias untargz="tar -xvzf"
-alias untarbz2="tar -xvjf"
-alias maketar="tar -cvf"
-alias maketargz="tar -cvzf"
-alias maketarbz2="tar -cvjf"
 
-alias youtube-dl-best="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
-
-# Platform-specific
-if [[ "$(uname)" == "Darwin" ]]; then
-    # I like installing the GNU coreutils ls command, so use that if available.
-    if [ -e /usr/local/bin/gls ]; then
-        alias ls="/usr/local/bin/gls -FlahN --color=auto"
-    else
-        alias ls="ls -FGlah"
-    fi
-    if [ -e /usr/local/bin/gmake ]; then
-        alias make=gmake
-    fi
-    # Take files out of quarantine:
-    alias liberate="xattr -d com.apple.quarantine"
-elif [[ "$(uname)" == "Linux" ]]; then
-    alias ls="ls -Flah --color=auto"
-fi
+# Add autosuggestions.
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Add support for syntax highlighting on the command line.
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -138,3 +114,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # If iTerm configuration is present, use its integration functionality.
 [[ ! -f ~/.dotfiles/iTerm/iterm2_shell_integration.zsh ]] || source ~/.dotfiles/iTerm/iterm2_shell_integration.zsh
+
+# Pyenv startup.
+[[ -z "${PYENV_ROOT}" || ! -d "${PYENV_ROOT}" ]] || eval "$(pyenv init -)"
