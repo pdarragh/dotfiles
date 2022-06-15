@@ -18,7 +18,7 @@ update:
 	-@git pull
 	@echo "Updated. You should now do 'make install' to put everything in place."
 
-install: install-bash install-tcsh install-zsh install-vim
+install: install-bash install-tcsh install-zsh install-vim install-git
 	@echo "Creating symlink to the dotfiles directory: $(current_dir)."
 	-@$(RM) $(userhome)/.dotfiles
 	-@ln -sf $(current_dir) $(userhome)/.dotfiles
@@ -90,6 +90,13 @@ install-zsh:
 	if [ -d $(omz_extras_dir) ] && $$INSTALL_OMZ; then \
 		ln -sf $(omz_extras_dir) $(OMZ_DIR)/custom/from-dotfiles; \
 	fi
+
+.PHONY: install-git
+install-git:
+	@echo "Installing prefs: git"
+	-@$(RM) $(userhome)/.global-gitignore
+	-@ln -sf $(current_dir)/git/global-gitignore $(userhome)/.global-gitignore
+	-@git config --global core.excludesfile $(userhome)/.global-gitignore
 
 save:
 	-@git add --all .
