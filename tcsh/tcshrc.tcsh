@@ -8,6 +8,15 @@
 ################################################################################
 
 ################################################################################
+# Switch shells on login
+
+if ($?loginsh || $?command) then
+        setenv SHELL /bin/zsh
+        if($?loginsh) exec /bin/zsh --login
+        exec /bin/zsh -c "$command"
+endif
+
+################################################################################
 # Prompt Customization
 
 set promptchars='$#'
