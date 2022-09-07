@@ -4,7 +4,7 @@ export HOMEBREW_LIB="$HOMEBREW_BASE/lib"
 export RUBY_BASE="$HOMEBREW_BASE/opt/ruby"
 export RUBY_EXEC="$RUBY_BASE/bin/ruby"
 export GEM_EXEC="$RUBY_BASE/bin/gem"
-export GEM_DIR="$($GEM_EXEC env gemdir)/bin"
+[[ ! -x $GEM_EXEC ]] || export GEM_DIR="$($GEM_EXEC env gemdir)/bin"
 export SMLNJ_BASE="/usr/local/smlnj"
 
 if command -v xcrun &> /dev/null
