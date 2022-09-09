@@ -89,6 +89,8 @@ install-zsh:
 	fi; \
 	if [ -d $(omz_extras_dir) ] && $$INSTALL_OMZ; then \
 		ln -sf $(omz_extras_dir) $(OMZ_DIR)/custom/from-dotfiles; \
+		$(RM) $(userhome)/.p10k.zsh \
+		ln -sf $(current_dir)/zsh/p10k.zsh $(userhome)/.p10k.zsh
 	fi
 
 .PHONY: install-git

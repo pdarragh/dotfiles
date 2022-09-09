@@ -1,11 +1,14 @@
-export HOMEBREW_BASE="/opt/homebrew"
-export HOMEBREW_OPT="$HOMEBREW_BASE/opt"
-export HOMEBREW_LIB="$HOMEBREW_BASE/lib"
-export RUBY_BASE="$HOMEBREW_BASE/opt/ruby"
-export RUBY_EXEC="$RUBY_BASE/bin/ruby"
-export GEM_EXEC="$RUBY_BASE/bin/gem"
-[[ ! -x $GEM_EXEC ]] || export GEM_DIR="$($GEM_EXEC env gemdir)/bin"
-export SMLNJ_BASE="/usr/local/smlnj"
+[[ ! -d /opt/homebrew ]] || {
+    export HOMEBREW_BASE="/opt/homebrew"
+    export HOMEBREW_OPT="$HOMEBREW_BASE/opt"
+    export HOMEBREW_LIB="$HOMEBREW_BASE/lib"
+    export RUBY_BASE="$HOMEBREW_BASE/opt/ruby"
+    export RUBY_EXEC="$RUBY_BASE/bin/ruby"
+    export GEM_EXEC="$RUBY_BASE/bin/gem"
+    { [[ ! -x $GEM_EXEC ]] || export GEM_DIR="$($GEM_EXEC env gemdir)/bin" }
+}
+
+[[ ! -d /usr/local/smlnj ]] || export SMLNJ_BASE="/usr/local/smlnj"
 
 if command -v xcrun &> /dev/null
 then export SDK_PATH="$(xcrun --show-sdk-path)"
