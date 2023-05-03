@@ -128,7 +128,7 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # If iTerm configuration is present, use its integration functionality.
-[[ ! -f ~/.dotfiles/iTerm/iterm2_shell_integration.zsh ]] || source ~/.dotfiles/iTerm/iterm2_shell_integration.zsh
+[[ ! -f ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 
 # Pyenv startup.
 [[ -z "${PYENV_ROOT}" || ! -d "${PYENV_ROOT}" ]] || eval "$(pyenv init -)"

@@ -1,3 +1,14 @@
+# Set the base path.
+
+# If the x86-64 Homebrew path is found, add it first to put it at the back.
+
+[[ ! -d /usr/local/homebrew ]] || {
+    alias brew64="arch -x86_64 /usr/local/homebrew/bin/brew"
+    export PATH="/usr/local/homebrew/bin:$PATH"
+}
+
+# Then add all other Homebrew-related paths as needed.
+
 [[ ! -d /opt/homebrew ]] || {
     export HOMEBREW_BASE="/opt/homebrew"
     export HOMEBREW_OPT="$HOMEBREW_BASE/opt"
