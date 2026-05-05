@@ -7,7 +7,7 @@
 
 userhome    := $${HOME}
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-current_dir := $(dir $(mkfile_path))
+current_dir := $(realpath $(dir $(mkfile_path)))
 
 .PHONY: default update install
 
